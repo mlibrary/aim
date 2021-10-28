@@ -43,4 +43,4 @@ jobs:
         namespace_token: ${{ secrets.HATCHER_TOKEN }}
         namespace: ${{ secrets.NAMESPACE }}
         type: cronjob
-        cronjob_name: send-alma-sms
+        cronjob_name: expire-student-worker-passwords
