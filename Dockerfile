@@ -1,4 +1,4 @@
-FROM ruby:3.0.2
+FROM ruby:3.0
 ARG UNAME=app
 ARG UID=1000
 ARG GID=1000
