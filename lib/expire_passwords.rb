@@ -1,5 +1,6 @@
 require 'alma_rest_client'
 require 'logger'
+require 'byebug'
 
 class PasswordExpirer
   def initialize(users, logger=Logger.new(STDOUT), client = AlmaRestClient.client)

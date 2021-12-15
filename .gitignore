@@ -5,3 +5,4 @@ not_updated_users.csv
 .byebug_history
 .irb_history
 .bundle/
+*.yml
