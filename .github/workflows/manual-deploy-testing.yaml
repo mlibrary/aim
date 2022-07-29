@@ -10,7 +10,7 @@ on:
 
 env:
   environment: testing
-  IMAGE: ghcr.io/mlibrary/{{ secrets.IMAGE_NAME }}
+  IMAGE: ghcr.io/mlibrary/${{ secrets.IMAGE_NAME }}
 
 jobs:
   deploy:

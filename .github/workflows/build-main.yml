@@ -8,7 +8,7 @@ on:
 
 env:
   environment: testing
-  IMAGE: ghcr.io/mlibrary/{{ secrets.IMAGE_NAME }}
+  IMAGE: ghcr.io/mlibrary/${{ secrets.IMAGE_NAME }}
 
 jobs:
   build:
@@ -32,8 +32,8 @@ jobs:
         file: Dockerfile.prod
         push: true
         tags: | 
-          {{ env.IMAGE }}:latest
-          {{ env.IMAGE }}:${{ github.sha }}
+          ${{ env.IMAGE }}:latest
+          ${{ env.IMAGE }}:${{ github.sha }}
     - name: Deploy to testing
       uses: mlibrary/deploy-to-kubernetes@v2
       with:
