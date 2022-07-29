@@ -23,3 +23,8 @@ USER $UNAME
 ENV BUNDLE_PATH /gems
 
 WORKDIR /app
+
+COPY --chown=${UID}:${GID} . /app
+RUN bundle _${BUNDLER_VERSION}_ install
+
+CMD ["bundle", "exec", "./expire_passwords.rb", "--path", "/config/accounts.yml"]

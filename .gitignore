@@ -6,3 +6,4 @@ not_updated_users.csv
 .irb_history
 .bundle/
 *.yml
+.cache/

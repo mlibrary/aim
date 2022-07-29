@@ -11,10 +11,12 @@ jobs:
         run: cat .env-example > .env
       - name: Load .env file
         uses: xom9ikk/dotenv@v1.0.2
-      - name: Set up Ruby 3.0.2
+      - name: Set up Ruby 3.1.0
         uses: ruby/setup-ruby@v1
         with:
-          ruby-version: 3.0.2
+          ruby-version: 3.1
           bundler-cache: true
+      - name: Run linter for Ruby
+        run: bundle exec standardrb
       - name: Run tests
         run: bundle exec rspec
