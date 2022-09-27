@@ -17,10 +17,13 @@ require "rspec"
 require "pry-byebug"
 require "webmock/rspec"
 require "simplecov"
+require "httpx/adapters/webmock"
+
 SimpleCov.start
 
 require File.expand_path "../../lib/expire_passwords.rb", __FILE__
 RSpec.configure do |config|
+  include AlmaRestClient::Test::Helpers
   # rspec-expectations config goes here. You can use an alternate
   # assertion/expectation library such as wrong or the stdlib/minitest
   # assertions if you prefer.
@@ -103,23 +106,23 @@ RSpec.configure do |config|
   #   # as the one that triggered the failure.
   #   Kernel.srand config.seed
 end
-[:get, :post, :put, :delete].each do |name|
-  define_method("stub_alma_#{name}_request") do |url:, input: nil, output: "", status: 200, query: nil|
-    req_attributes = {}
-    req_attributes[:headers] = {
-      :accept => "application/json",
-      :Authorization => "apikey #{ENV["ALMA_API_KEY"]}",
-      "Accept-Encoding" => "gzip;q=1.0,deflate;q=0.6,identity;q=0.3",
-      "User-Agent" => "Ruby",
-      "Content-Type" => "application/json"
-    }
-    req_attributes[:body] = input unless input.nil?
-    req_attributes[:query] = query unless query.nil?
-    resp = {headers: {content_type: "application/json"}, status: status, body: output}
+# [:get, :post, :put, :delete].each do |name|
+# define_method("stub_alma_#{name}_request") do |url:, input: nil, output: "", status: 200, query: nil|
+# req_attributes = {}
+# req_attributes[:headers] = {
+# :accept => "application/json",
+# :Authorization => "apikey #{ENV["ALMA_API_KEY"]}",
+# "Accept-Encoding" => "gzip;q=1.0,deflate;q=0.6,identity;q=0.3",
+# "User-Agent" => "Ruby",
+# "Content-Type" => "application/json"
+# }
+# req_attributes[:body] = input unless input.nil?
+# req_attributes[:query] = query unless query.nil?
+# resp = {headers: {content_type: "application/json"}, status: status, body: output}
 
-    stub_request(name, "#{ENV["ALMA_API_HOST"]}/almaws/v1/#{url}").with(**req_attributes).to_return(**resp)
-  end
-end
+# stub_request(name, "#{ENV["ALMA_API_HOST"]}/almaws/v1/#{url}").with(**req_attributes).to_return(**resp)
+# end
+# end
 def fixture(path)
   File.read("./spec/fixtures/#{path}")
 end

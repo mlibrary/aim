@@ -25,7 +25,7 @@ RSpec.describe PasswordExpirer do
     put_stub = stub_alma_put_request(url: "users/#{@user}", input: @put_body.to_json)
     expect(@logger).to receive(:error)
     expect(subject[:number_of_errors]).to eq(1)
-    expect(get_stub).to have_been_requested
+    expect(get_stub).to have_been_requested.at_least_once
     expect(put_stub).not_to have_been_requested
   end
   it "logs an error on failed put and returns proper number of errors" do
@@ -34,6 +34,6 @@ RSpec.describe PasswordExpirer do
     expect(@logger).to receive(:error)
     expect(subject[:number_of_errors]).to eq(1)
     expect(get_stub).to have_been_requested
-    expect(put_stub).to have_been_requested
+    expect(put_stub).to have_been_requested.at_least_once
   end
 end

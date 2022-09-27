@@ -15,15 +15,15 @@ class PasswordExpirer
     # log started password expirer
     @users.each do |uniqname|
       response = @client.get("/users/#{uniqname}")
-      if response.code != 200
+      if response.status != 200
         @logger.error("Unable to get info about user: #{uniqname}")
         error_count += 1
         next
       end
-      body = response.parsed_response
+      body = response.body
       body["force_password_change"] = "TRUE"
       new_response = @client.put("/users/#{uniqname}", body: body.to_json)
-      if new_response.code != 200
+      if new_response.status != 200
         @logger.error("Unable to update user: #{uniqname}")
         error_count += 1
       else
