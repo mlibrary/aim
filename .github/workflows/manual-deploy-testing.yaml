@@ -64,7 +64,7 @@ jobs:
         push: true
         tags: ${{ env.IMAGE }}:${{steps.tag_check.outputs.tag}}
     - name: Deploy to ${{ env.environment }}
-      uses: mlibrary/deploy-to-kubernetes@v2
+      uses: mlibrary/deploy-to-kubernetes@v3
       with:
         registry_token: ${{ secrets.GITHUB_TOKEN }}
         image: ${{ env.IMAGE }}:${{ steps.tag_check.outputs.tag }}
@@ -72,5 +72,6 @@ jobs:
         cluster_server: https://hatcher.kubernetes.lib.umich.edu
         namespace_token: ${{ secrets.HATCHER_TOKEN }}
         namespace: ${{ secrets.NAMESPACE }}
-        type: cronjob
-        cronjob_name: expire-student-worker-passwords
+        resource_type: cronjob
+        resource_name: expire-student-worker-passwords
+        container: expire-student-worker-passwords
