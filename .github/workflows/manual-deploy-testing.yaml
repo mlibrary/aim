@@ -59,6 +59,8 @@ jobs:
       with:
         context: .
         file: Dockerfile.prod
+        secrets: |
+          "gh_package_read_token=${{ secrets.GH_PACKAGE_READ_TOKEN }}"
         push: true
         tags: ${{ env.IMAGE }}:${{steps.tag_check.outputs.tag}}
     - name: Deploy to ${{ env.environment }}
