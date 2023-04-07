@@ -1,7 +1,8 @@
 source "https://rubygems.org"
-gem "alma_rest_client",
-  git: "https://github.com/mlibrary/alma_rest_client",
-  tag: "1.2.0"
+
+source "https://rubygems.pkg.github.com/mlibrary" do
+  gem "alma_rest_client", "~> 2.0"
+end
 
 group :development, :test do
   gem "standard"
