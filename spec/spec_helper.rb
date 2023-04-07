@@ -14,7 +14,7 @@
 #
 # See http://rubydoc.info/gems/rspec-core/RSpec/Core/Configuration
 require "rspec"
-require "pry-byebug"
+require "byebug"
 require "webmock/rspec"
 require "simplecov"
 require "httpx/adapters/webmock"
