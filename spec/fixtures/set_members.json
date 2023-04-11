@@ -1,0 +1,10 @@
+{
+  "member": [
+    {
+      "id": "mlibrary.acct.testing1@gmail.com",
+      "description": "Student, Test 1",
+      "link": "https://api-na.hosted.exlibrisgroup.com/almaws/v1/users/mlibrary.acct.testing1@gmail.com"
+    }
+  ],
+  "total_record_count": 2
+}
