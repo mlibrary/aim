@@ -3,8 +3,7 @@ require "logger"
 require "byebug"
 
 class PasswordExpirer
-  def initialize(users, logger = Logger.new($stdout), client = AlmaRestClient.client)
-    @users = users
+  def initialize(logger = Logger.new($stdout), client = AlmaRestClient.client)
     @client = client
     @logger = logger
   end

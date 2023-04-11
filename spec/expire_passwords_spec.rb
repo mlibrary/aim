@@ -10,7 +10,7 @@ RSpec.describe PasswordExpirer do
     stub_alma_get_request(url: "conf/sets/#{ENV.fetch("STUDENT_USERS_SET_ID")}/members?limit=100&offset=0", output: fixture("set_members.json"))
   end
   subject do
-    described_class.new([@user], @logger).run
+    described_class.new(@logger).run
   end
   it "forces a password change" do
     get_stub = stub_alma_get_request(url: "users/#{@user}", output: @user_json)

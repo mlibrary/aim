@@ -28,4 +28,4 @@ RUN --mount=type=secret,id=gh_package_read_token \
 
 USER $UNAME
 
-CMD ["bundle", "exec", "./expire_passwords.rb", "--path", "/config/accounts.yml"]
+CMD ["bundle", "exec", "ruby", "./expire_passwords.rb"]
