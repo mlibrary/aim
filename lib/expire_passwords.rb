@@ -10,10 +10,16 @@ class PasswordExpirer
   end
 
   def run
+    users_response = @client.get_all(url: "/conf/sets/#{ENV.fetch("STUDENT_USERS_SET_ID")}/members", record_key: "member")
+    if users_response.status != 200
+      @logger.error("Unable to retrieve student users set")
+      exit
+    end
     error_count = 0
     @logger.info("Started Expiring Student Worker Account Passwords")
     # log started password expirer
-    @users.each do |uniqname|
+    users_response.body["member"].each do |user|
+      uniqname = user["id"]
       response = @client.get("/users/#{uniqname}")
       if response.status != 200
         @logger.error("Unable to get info about user: #{uniqname}")
