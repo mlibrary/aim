@@ -9,6 +9,7 @@ on: push
 env:
   environment: testing
   IMAGE: ghcr.io/mlibrary/${{ secrets.IMAGE_NAME }}
+  image_name: ${{ secrets.IMAGE_NAME }}
 
 jobs:
   build:
@@ -17,7 +18,7 @@ jobs:
     #environment: testing
     uses: mlibrary/platform-engineering-workflows/.github/workflows/build-unstable.yml@main
     with:
-      image_name: ${{ secrets.IMAGE_NAME }}
+      image_name: ${{ env.image_name }}
     secrets: inherit
 
     #runs-on: ubuntu-latest
