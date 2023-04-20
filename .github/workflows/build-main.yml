@@ -1,10 +1,11 @@
 name: Docker Build Main and Deploy to Testing
 
-on:
-  workflow_run:
-    workflows: [ 'Run Tests' ]
-    branches: [ main ]
-    types: [ completed ]
+
+on: push
+  #workflow_run:
+    #workflows: [ 'Run Tests' ]
+    #branches: [ main ]
+    #types: [ completed ]
 
 env:
   environment: testing
@@ -12,8 +13,9 @@ env:
 
 jobs:
   build:
-    if: ${{ github.event.workflow_run.conclusion == 'success' }}
-    environment: testing
+    #name: Build ${{ github.sha }}
+    #if: ${{ github.event.workflow_run.conclusion == 'success' }}
+    #environment: testing
     uses: mlibrary/platform-engineering-workflows/.github/workflows/build-unstable.yml@main
     with:
       image_name: ${{ secrets.IMAGE_NAME }}
