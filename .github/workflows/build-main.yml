@@ -18,7 +18,7 @@ jobs:
     #environment: testing
     uses: mlibrary/platform-engineering-workflows/.github/workflows/build-unstable.yml@main
     with:
-      image_name: ${{ env.image_name }}
+      image_name: expire-student-worker-passwords
     secrets: inherit
 
     #runs-on: ubuntu-latest
