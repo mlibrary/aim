@@ -13,7 +13,7 @@ env:
 
 jobs:
   build:
-    #name: Build ${{ github.sha }}
+    name: Build ${{ github.sha }}
     #if: ${{ github.event.workflow_run.conclusion == 'success' }}
     #environment: testing
     uses: mlibrary/platform-engineering-workflows/.github/workflows/build-unstable.yml@main
