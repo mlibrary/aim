@@ -8,7 +8,7 @@ on:
 
 env:
   environment: testing
-  IMAGE: ghcr.io/mlibrary/${{ secrets.IMAGE_NAME }}-unstable
+  IMAGE: ghcr.io/mlibrary/${{ vars.IMAGE_NAME }}-unstable
 
 jobs:
   build:
@@ -28,11 +28,11 @@ jobs:
       uses: mlibrary/deploy-to-kubernetes@v3
       with:
         registry_token: ${{ secrets.GITHUB_TOKEN }}
-        image: ${{ env.IMAGE}}:${{ github.sha }}
+        image: ${{ env.IMAGE }}:${{ github.sha }}
         cluster_ca: ${{ secrets.HATCHER_CLUSTER_CA }}
         cluster_server: https://hatcher.kubernetes.lib.umich.edu
         namespace_token: ${{ secrets.HATCHER_TOKEN }}
-        namespace: ${{ secrets.NAMESPACE }}
+        namespace: ${{ vars.NAMESPACE }}
         resource_type: cronjob
         resource_name: expire-student-worker-passwords
         container: expire-student-worker-passwords
