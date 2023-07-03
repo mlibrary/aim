@@ -1,4 +1,4 @@
-name: Docker Build Main and Deploy to Testing
+name: Docker Build Main and Deploy to Workshop
 
 on:
   workflow_run:
@@ -6,33 +6,24 @@ on:
     branches: [ main ]
     types: [ completed ]
 
-env:
-  environment: testing
-  IMAGE: ghcr.io/mlibrary/${{ vars.IMAGE_NAME }}-unstable
-
 jobs:
-  build:
-    name: Build ${{ github.sha }}
-    if: ${{ github.event.workflow_run.conclusion == 'success' }}
-    uses: mlibrary/platform-engineering-workflows/.github/workflows/build-unstable.yml@main
+  build-unstable:
+    name: Build unstable ${{ github.sha }}
+    uses: mlibrary/platform-engineering-workflows/.github/workflows/build-unstable.yml@v1
     with:
-      image_name: expire-student-worker-passwords
+      image_name: ${{ vars.IMAGE_NAME }}
+      tag: ${{ github.sha }}
+      dockerfile: Dockerfile
     secrets: inherit
 
-  deploy:
-    needs: build
-    runs-on: ubuntu-latest
-    environment: testing
-    steps:
-    - name: Deploy to testing
-      uses: mlibrary/deploy-to-kubernetes@v3
-      with:
-        registry_token: ${{ secrets.GITHUB_TOKEN }}
-        image: ${{ env.IMAGE }}:${{ github.sha }}
-        cluster_ca: ${{ secrets.HATCHER_CLUSTER_CA }}
-        cluster_server: https://hatcher.kubernetes.lib.umich.edu
-        namespace_token: ${{ secrets.HATCHER_TOKEN }}
-        namespace: ${{ vars.NAMESPACE }}
-        resource_type: cronjob
-        resource_name: expire-student-worker-passwords
-        container: expire-student-worker-passwords
+  deploy-workshop:
+    needs: build-unstable
+    name: Deploy to workshop
+    uses: mlibrary/platform-engineering-workflows/.github/workflows/deploy.yml@v1
+    with:
+      image: ${{ needs.build-unstable.outputs.image }}
+      file: environments/default/workshop/app-image.txt
+      CONFIG_REPO_RW_APP_ID: ${{ vars.CONFIG_REPO_RW_APP_ID }}
+      CONFIG_REPO_RW_INSTALL_ID: ${{ vars.CONFIG_REPO_RW_INSTALL_ID }}
+      CONFIG_REPO_FULL_NAME: ${{ vars.CONFIG_REPO_FULL_NAME }}
+    secrets: inherit
