@@ -4,6 +4,8 @@ source "https://rubygems.pkg.github.com/mlibrary" do
   gem "alma_rest_client", "~> 2.0"
 end
 
+gem "thor"
+
 group :development, :test do
   gem "standard"
   gem "rspec"

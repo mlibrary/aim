@@ -1,10 +1,7 @@
 coverage/
-updated_users.csv
-not_updated_users.csv
 .env
 .byebug_history
 .irb_history
+.bash_history
 .bundle/
-*.yml
-!docker-compose.yml
 .cache/

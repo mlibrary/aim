@@ -21,7 +21,7 @@ require "httpx/adapters/webmock"
 
 SimpleCov.start
 
-require File.expand_path "../../lib/expire_passwords.rb", __FILE__
+require File.expand_path "../../lib/aim.rb", __FILE__
 RSpec.configure do |config|
   include AlmaRestClient::Test::Helpers
   # rspec-expectations config goes here. You can use an alternate

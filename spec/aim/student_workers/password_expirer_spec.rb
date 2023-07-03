@@ -1,13 +1,13 @@
 require "spec_helper"
 
-RSpec.describe PasswordExpirer do
+RSpec.describe AIM::StudentWorkers::PasswordExpirer do
   before(:each) do
-    @user_json = fixture("user.json")
+    @user_json = fixture("student_workers/user.json")
     @put_body = JSON.parse(@user_json)
     @put_body["force_password_change"] = "TRUE"
     @user = "mlibrary.acct.testing1@gmail.com"
     @logger = instance_double(Logger, info: nil, error: nil)
-    stub_alma_get_request(url: "conf/sets/#{ENV.fetch("STUDENT_USERS_SET_ID")}/members?limit=100&offset=0", output: fixture("set_members.json"))
+    stub_alma_get_request(url: "conf/sets/#{ENV.fetch("STUDENT_USERS_SET_ID")}/members?limit=100&offset=0", output: fixture("student_workers/set_members.json"))
   end
   subject do
     described_class.new(@logger).run
