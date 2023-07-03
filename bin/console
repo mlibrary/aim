@@ -1,5 +1,6 @@
 #!/usr/bin/env ruby
 # frozen_string_literal: true
+$LOAD_PATH.unshift("/app/lib")
 
 require "bundler/setup"
 require "aim"
@@ -11,5 +12,6 @@ require "aim"
 # require "pry"
 # Pry.start
 
+require "byebug"
 require "irb"
 IRB.start(__FILE__)

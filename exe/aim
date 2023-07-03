@@ -1,5 +1,6 @@
 #!/usr/bin/env ruby
-#require "aim"
-require "/app/lib/aim"
+$LOAD_PATH.unshift("/app/lib")
 
+require "bundler/setup"
+require "aim"
 AIM::CLI.start

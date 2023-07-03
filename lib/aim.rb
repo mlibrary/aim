@@ -1,8 +1,10 @@
 # frozen_string_literal: true
 
+$LOAD_PATH.unshift(File.dirname(__FILE__))
+
 require "thor"
-require_relative "aim/student_workers"
-require_relative "aim/cli"
+require "aim/student_workers"
+require "aim/cli"
 
 module AIM
   class Error < StandardError; end
