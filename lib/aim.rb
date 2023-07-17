@@ -4,6 +4,7 @@ $LOAD_PATH.unshift(File.dirname(__FILE__))
 
 require "thor"
 require "aim/student_workers"
+require "aim/hathi_trust"
 require "aim/cli"
 
 module AIM
