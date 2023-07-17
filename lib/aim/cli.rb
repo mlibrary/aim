@@ -8,7 +8,7 @@ module AIM
       desc "set_digitizer", "sets digitizer for digifeeds items"
       long_desc <<~DESC
         Triggers the "Change Physical items information job" on the digifeeds
-        set so that Statistics Note 3 has the value "umich". This will tell Google
+        set so that Statistics Note 1 has the value "umich". This will tell Google
         that Umich is the digitizer of the item. 
       DESC
       def set_digitizer
