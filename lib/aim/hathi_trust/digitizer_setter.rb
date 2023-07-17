@@ -29,8 +29,8 @@ module AIM
 
       def params
         {
-          "STATISTICS_NOTE_3_value" => digitizer,
-          "STATISTICS_NOTE_3_selected" => true,
+          "STATISTICS_NOTE_1_value" => digitizer,
+          "STATISTICS_NOTE_1_selected" => true,
           "set_id" => ENV.fetch("DIGIFEEDS_SET_ID"),
           "job_name" => job_name
         }

@@ -4,8 +4,8 @@ RSpec.describe AIM::HathiTrust::DigitizerSetter do
     body =
       {"parameter" =>
        [
-         {"name" => {"value" => "STATISTICS_NOTE_3_value", "desc" => "STATISTICS_NOTE_3_value"}, "value" => "umich"},
-         {"name" => {"value" => "STATISTICS_NOTE_3_selected", "desc" => "STATISTICS_NOTE_3_selected"}, "value" => true},
+         {"name" => {"value" => "STATISTICS_NOTE_1_value", "desc" => "STATISTICS_NOTE_1_value"}, "value" => "umich"},
+         {"name" => {"value" => "STATISTICS_NOTE_1_selected", "desc" => "STATISTICS_NOTE_1_selected"}, "value" => true},
          {"name" => {"value" => "set_id", "desc" => "set_id"}, "value" => ENV.fetch("DIGIFEEDS_SET_ID")},
          {"name" => {"value" => "job_name", "desc" => "job_name"}, "value" => "Change Physical items information - set digitizer to Umich"}
        ]}
