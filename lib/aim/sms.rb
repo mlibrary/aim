@@ -33,5 +33,25 @@ module AIM
         Logger.new($stdout).error("Failed to contact the push gateway")
       end
     end
+
+    # For debugging purposes
+    # See
+    # https://www.twilio.com/docs/sms/api/message-resource?code-sample=code-read-list-all-messages&code-language=Ruby&code-sdk-version=6.x#read-multiple-message-resources
+    # for things one might do with the client
+    def self.twilio_client
+      Twilio::REST::Client.new(ENV.fetch("TWILIO_ACCT_SID"), ENV.fetch("TWILIO_AUTH_TOKEN"))
+    end
+
+    def self.get_message_status(sid)
+      message = twilio_client.messages(sid).fetch
+      {
+        status: message.status,
+        sid: message.sid,
+        to: message.to,
+        body: message.body,
+        date_created: message.date_created,
+        date_sent: message.date_sent
+      }
+    end
   end
 end

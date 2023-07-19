@@ -2,7 +2,7 @@ describe AIM::SMS::Processor do
   before(:each) do
     @sftp = instance_double(SFTP::Client, ls: [], get: nil, rename: nil)
     @file_class = class_double(File)
-    twilio_response = double("TwilioClient", status: "success", to: "someone", body: "body")
+    twilio_response = double("TwilioClient", status: "success", sid: "sid", to: "someone", body: "body")
     @sender_double = instance_double(AIM::SMS::Sender, send: twilio_response)
     @logger_double = instance_double(Logger, info: nil, error: nil)
   end
