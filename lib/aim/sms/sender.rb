@@ -35,7 +35,7 @@ module AIM
 
           begin
             response = @sender.send(message)
-            @logger.info("status: #{response.status}, to: #{response.to}, body: #{response.body}")
+            @logger.info("status: #{response.status}, sid: #{response.sid}, to: #{response.to}, body: #{response.body}")
             summary[:num_files_sent] = summary[:num_files_sent] + 1
           rescue Twilio::REST::TwilioError => e
             error_message(sms_file: sms_file, error: e)
@@ -81,7 +81,7 @@ module AIM
     end
 
     class Sender
-      def initialize(client = Twilio::REST::Client.new(ENV.fetch("TWILIO_ACCT_SID"), ENV.fetch("TWILIO_AUTH_TOKEN")))
+      def initialize(client = AIM::SMS.twilio_client)
         @client = client
       end
 
