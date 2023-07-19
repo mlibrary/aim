@@ -50,7 +50,10 @@ module AIM
         to: message.to,
         body: message.body,
         date_created: message.date_created,
-        date_sent: message.date_sent
+        date_sent: message.date_sent,
+        error_code: message.error_code,
+        error_message: message.error_message,
+        full_message: message
       }
     end
   end
