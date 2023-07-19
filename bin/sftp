@@ -1,0 +1,3 @@
+#!/bin/bash
+
+sftp -oIdentityFile=${SFTP_SSH_KEY_PATH} -oStrictHostKeyChecking=no ${SFTP_USER}@${SFTP_HOST}

@@ -5,3 +5,19 @@ coverage/
 .bash_history
 .bundle/
 .cache/
+
+.ssh/*
+!.ssh/.keep
+
+sftp/ssh/*
+!/sftp/ssh/.keep
+
+# This is complicated. https://stackoverflow.com/questions/987142/make-gitignore-ignore-everything-except-a-few-files 
+sftp/sms/*
+!sftp/sms/.keep
+!sftp/sms/processed/
+sftp/sms/processed/*
+!sftp/sms/processed/.keep
+
+scratch/*
+!scratch/.keep
