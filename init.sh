@@ -19,7 +19,7 @@ echo "🔑 Set up ssh keys for mock sftp server"
 ./bin/set_up_development_ssh_keys.sh
 
 echo "🛠️ Set up sftp/sms directory for sms scripts"
-./bin/set_up_sms_dir.sh
+./bin/sms/setup.sh
 
 echo "🚢 Build docker images"
 docker-compose build
