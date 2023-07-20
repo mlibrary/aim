@@ -4,6 +4,14 @@ A collection of scripts for  working with Alma. This repository is maintained by
 
 ## List of scripts included in this repository
 
+### Send SMS
+
+```
+aim sms send
+```
+
+This script sends sms messages with the twilio API that are deposited by alma into the SFTP server
+
 ### Expire Student Worker Accounts
 
 ```
@@ -29,7 +37,7 @@ is the digitizer of the item.
 
 1. Run the `init.sh` script. This is not a complicated script. It copies over
    env.example to .env, copies over a precommit hook, builds the image, and
-   installs the gems.
+   installs the gems. This script is safe to rerun at any time.
 
 ```
 `./init.sh`
