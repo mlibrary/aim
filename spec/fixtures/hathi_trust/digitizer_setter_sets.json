@@ -1,0 +1,69 @@
+{
+  "set": [
+    {
+      "id": "111",
+      "name": "digifeeds_metadata_20230607",
+      "description": "three missing volumes from 20230504",
+      "type": {
+        "value": "ITEMIZED",
+        "desc": "Itemized"
+      },
+      "content": {
+        "value": "ITEM",
+        "desc": "Physical items"
+      },
+      "status": {
+        "value": "ACTIVE",
+        "desc": "Active"
+      },
+      "origin": {
+        "value": "UI",
+        "desc": "Institution only"
+      },
+      "private": {
+        "value": "false",
+        "desc": "No"
+      },
+      "status_date": "2023-06-07T19:00:32.689Z",
+      "created_by": {
+        "value": "test",
+        "desc": "TEST, TEST"
+      },
+      "created_date": "2023-06-07T19:00:32.689Z",
+      "link": "https://api-na.hosted.exlibrisgroup.com/almaws/v1/conf/sets/111"
+    },
+    {
+      "id": "999",
+      "name": "digifeeds_metadata",
+      "description": "list of metadata for digifeeds",
+      "type": {
+        "value": "ITEMIZED",
+        "desc": "Itemized"
+      },
+      "content": {
+        "value": "ITEM",
+        "desc": "Physical items"
+      },
+      "status": {
+        "value": "ACTIVE",
+        "desc": "Active"
+      },
+      "origin": {
+        "value": "UI",
+        "desc": "Institution only"
+      },
+      "private": {
+        "value": "false",
+        "desc": "No"
+      },
+      "status_date": "2023-07-17T17:23:03.086Z",
+      "created_by": {
+        "value": "test",
+        "desc": "TEST, TEST"
+      },
+      "created_date": "2023-07-17T17:23:03.086Z",
+      "link": "https://api-na.hosted.exlibrisgroup.com/almaws/v1/conf/sets/999"
+    }
+  ],
+  "total_record_count": 2
+}

@@ -12,7 +12,10 @@ module AIM
         that Umich is the digitizer of the item. 
       DESC
       def set_digitizer
+        start_time = Time.now.to_i
+        AIM::HathiTrust::DigitizerSetter.configure
         AIM::HathiTrust::DigitizerSetter.new.run
+        AIM::HathiTrust::DigitizerSetter.send_metrics(start_time)
       end
     end
 
