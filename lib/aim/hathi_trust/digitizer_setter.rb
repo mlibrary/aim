@@ -1,6 +1,22 @@
 module AIM
   module HathiTrust
     class DigitizerSetter
+      def self.configure
+        ::Yabeda.configure do
+          gauge :aim_hathi_trust_set_digitizer_last_success, comment: "Start time of the last Set Digitizer Job that successfully finished."
+        end
+        Yabeda.configure!
+      end
+
+      def self.send_metrics(start_time)
+        Yabeda.aim_hathi_trust_set_digitizer_last_success.set({}, start_time)
+        begin
+          Yabeda::Prometheus.push_gateway.add(Yabeda::Prometheus.registry)
+        rescue
+          Logger.new($stdout).error("Failed to contact the push gateway")
+        end
+      end
+
       def initialize(logger: Logger.new($stdout))
         @logger = logger
       end
