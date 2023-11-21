@@ -54,6 +54,14 @@ describe AIM::SMS::Message do
   before(:each) do
     @message = fixture("sms/sample_message.txt").split("\n")
   end
+  context ".empty?" do
+    it "is true if the message is nil" do
+      expect(described_class.empty?("")).to eq(true)
+    end
+    it "is false if the message is not empty" do
+      expect(described_class.empty?(@message)).to eq(false)
+    end
+  end
   subject do
     described_class.new(@message.join("\n"))
   end

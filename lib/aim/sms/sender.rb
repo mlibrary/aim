@@ -31,9 +31,11 @@ module AIM
           @logger.info("Processing #{file}")
           sms_file = @sms_file_class.new(file)
           @sftp.get(sms_file.remote_file, sms_file.scratch_path)
-          message = Message.new(@file_class.read(sms_file.scratch_path))
-
           begin
+            message_text = @file_class.read(sms_file.scratch_path)
+            raise StandardError, "Message file is empty" if Message.empty?(message_text)
+            message = Message.new(message_text)
+
             response = @sender.send(message)
             @logger.info("status: #{response.status}, sid: #{response.sid}, to: #{response.to}, body: #{response.body}")
             summary[:num_files_sent] = summary[:num_files_sent] + 1
@@ -95,6 +97,10 @@ module AIM
     end
 
     class Message
+      def self.empty?(msg)
+        msg == ""
+      end
+
       def initialize(msg)
         @msg = msg.split("\n")
         @phone = TelephoneNumber.parse(@msg.first.strip, :US)

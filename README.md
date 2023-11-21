@@ -52,7 +52,7 @@ That's it. 🎉
 ## Running tests
 
 ```
-docker-compose run --rm app bundle exec rspec
+docker compose run --rm app bundle exec rspec
 ```
 
 ## Developer guidelines
