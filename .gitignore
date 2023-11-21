@@ -5,6 +5,7 @@ coverage/
 .bash_history
 .bundle/
 .cache/
+.solargraph.yml
 
 .ssh/*
 !.ssh/.keep

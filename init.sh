@@ -22,7 +22,7 @@ echo "🛠️ Set up sftp/sms directory for sms scripts"
 ./bin/sms/setup.sh
 
 echo "🚢 Build docker images"
-docker-compose build
+docker compose build
 
 echo "📦 Installing Gems"
-docker-compose run --rm app bundle
+docker compose run --rm app bundle
