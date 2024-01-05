@@ -5,11 +5,17 @@ source "https://rubygems.pkg.github.com/mlibrary" do
   gem "sftp"
 end
 
+gem "hathifiles_database",
+  git: "https://github.com/hathitrust/hathifiles_database",
+  branch: "main"
+
 gem "thor"
 gem "twilio-ruby"
 gem "telephone_number"
 gem "yabeda"
 gem "yabeda-prometheus"
+gem "canister"
+gem "semantic_logger"
 
 group :development, :test do
   gem "standard"
