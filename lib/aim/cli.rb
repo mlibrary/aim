@@ -20,7 +20,10 @@ module AIM
       desc "update", "updates the hathifiles db for given date; default date is today"
       option :date, type: :string, default: S.today_str
       def update
+        start_time = Time.now.to_i
+        AIM::Hathifiles.configure_update_metrics
         AIM::Hathifiles.update(options[:date])
+        AIM::Hathifiles.send_metrics(start_time)
       end
 
       desc "setup", "recreates the tables for the hathifiles database"
