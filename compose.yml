@@ -33,5 +33,16 @@ services:
     ports:
       - 9091:9091
 
+  hathifiles:
+    image: mariadb
+    volumes:
+      - hathidb:/var/lib/mysql
+    environment:
+      - MARIADB_ROOT_PASSWORD=pass
+      - MARIADB_USER=user
+      - MARIADB_PASSWORD=password
+      - MARIADB_DATABASE=hathifiles
+
 volumes:
   gem_cache:
+  hathidb:

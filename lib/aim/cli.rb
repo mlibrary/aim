@@ -4,6 +4,31 @@ module AIM
       true
     end
 
+    class Hathifiles < Thor
+      desc "catchup", "applies updates to the hathifiles from start_date up to today; Default start_date is today"
+      option :start_date, type: :string, default: S.today_str
+      def catch_up
+        AIM::Hathifiles.catch_up(options[:start_date])
+      end
+
+      desc "full", "reloads full hathifiles db for given date; default date is the first of the current month"
+      option :date, type: :string, default: S.first_of_the_month
+      def full
+        AIM::Hathifiles.full(options[:date])
+      end
+
+      desc "update", "updates the hathifiles db for given date; default date is today"
+      option :date, type: :string, default: S.today_str
+      def update
+        AIM::Hathifiles.update(options[:date])
+      end
+
+      desc "setup", "recreates the tables for the hathifiles database"
+      def setup
+        AIM::Hathifiles.setup
+      end
+    end
+
     class HathiTrust < Thor
       desc "set_digitizer", "sets digitizer for digifeeds items"
       long_desc <<~DESC
@@ -49,6 +74,9 @@ module AIM
         AIM::SMS.send_metrics(results)
       end
     end
+
+    desc "hathifiles SUBCOMMAND", "commands related to the Hathifiles database"
+    subcommand "hathifiles", Hathifiles
 
     desc "ht SUBCOMMAND", "commands related to the HathiTrust and Google Books project"
     subcommand "ht", HathiTrust
