@@ -36,6 +36,7 @@ GEM
     bigdecimal (3.1.5)
     byebug (11.1.3)
     canister (0.9.2)
+    climate_control (1.2.0)
     coderay (1.1.3)
     concurrent-ruby (1.2.2)
     connection_pool (2.4.1)
@@ -211,6 +212,7 @@ PLATFORMS
 DEPENDENCIES
   alma_rest_client (~> 2.0)!
   canister
+  climate_control
   hathifiles_database!
   pry
   pry-byebug

@@ -23,7 +23,7 @@ S.register(:log_stream) do
 end
 
 S.register(:logger) do
-  SemanticLogger[S.app_name]
+  SemanticLogger["aim #{S.app_name}"]
 end
 
 SemanticLogger.add_appender(io: S.log_stream, level: :info) unless ENV["APP_ENV"] == "test"
