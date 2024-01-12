@@ -1,7 +1,7 @@
 module AIM
   class CLI
     class Hathifiles < Thor
-      desc "catchup", "applies updates to the hathifiles from start_date up to today; Default start_date is today"
+      desc "catch_up", "applies updates to the hathifiles from start_date up to today; Default start_date is today"
       option :start_date, type: :string, default: S.today_str
       def catch_up
         AIM::Hathifiles.catch_up(options[:start_date])
