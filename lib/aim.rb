@@ -3,7 +3,9 @@
 $LOAD_PATH.unshift(File.dirname(__FILE__))
 
 require "thor"
+require "services"
 require "aim/student_workers"
+require "aim/hathifiles"
 require "aim/hathi_trust"
 require "aim/sms"
 require "aim/cli"
