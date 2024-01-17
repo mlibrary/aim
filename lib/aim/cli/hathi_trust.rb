@@ -19,7 +19,7 @@ end
 
 module AIM
   class CLI
-    desc "ht SUBCOMMAND", "commands related to the HathiTrust and Google Books project"
-    subcommand "ht", HathiTrust
+    desc "hathi_trust SUBCOMMAND", "commands related to the HathiTrust and Google Books project"
+    subcommand "hathi_trust", HathiTrust
   end
 end

@@ -19,7 +19,7 @@ jobs:
 
   deploy-production-default:
     needs: build-production
-    name: Deploy to production
+    name: Deploy to production - default
     uses: mlibrary/platform-engineering-workflows/.github/workflows/deploy.yml@v1
     with:
       image: ghcr.io/mlibrary/${{ vars.IMAGE_NAME }}:${{ github.event.inputs.tag }}
@@ -31,7 +31,7 @@ jobs:
 
   deploy-production-hathifiles:
     needs: build-production
-    name: Deploy to production
+    name: Deploy to production - hathifiles
     uses: mlibrary/platform-engineering-workflows/.github/workflows/deploy.yml@v1
     with:
       image: ghcr.io/mlibrary/${{ vars.IMAGE_NAME }}:${{ github.event.inputs.tag }}
