@@ -12,6 +12,10 @@ S.register(:app_name) {
   ENV["APP_NAME"] || "AIM"
 }
 
+S.register(:project_root) do
+  File.absolute_path(File.join(__dir__, ".."))
+end
+
 S.register(:today_str) { Date.today.to_s }
 S.register(:first_of_the_month) do
   Date.new(Date.today.year, Date.today.month, 1).to_s

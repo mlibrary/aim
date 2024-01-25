@@ -3,7 +3,7 @@ module AIM
     class Modifier
       attr_reader :scratch_dir
       def initialize(date:,
-        scratch_dir: "/app/scratch/#{SecureRandom.alphanumeric(8)}",
+        scratch_dir: "#{S.project_root}/scratch/#{SecureRandom.alphanumeric(8)}",
         logger: S.logger,
         connection: HathifilesDatabase.new(S.ht_mysql_connection))
 

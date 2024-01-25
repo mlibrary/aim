@@ -6,7 +6,7 @@ jobs:
   test:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v4
       - name: Create .env file
         run: cat env.example env.development > .env
       - name: Load .env file
@@ -17,7 +17,7 @@ jobs:
           ruby-version: 3.2
           bundler-cache: true
         env: 
-          BUNDLE_RUBYGEMS__PKG__GITHUB__COM: ${{secrets.GH_PACKAGE_READ_TOKEN}}
+          BUNDLE_RUBYGEMS__PKG__GITHUB__COM: ${{secrets.GITHUB_TOKEN}}
       - name: Run linter for Ruby
         run: bundle exec standardrb
       - name: Run tests

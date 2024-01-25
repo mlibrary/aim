@@ -40,6 +40,6 @@ RSpec.describe AIM::StudentWorkers::PasswordExpirer do
   it "exits if the student users set can't be retrieved" do
     stub_alma_get_request(url: "conf/sets/#{ENV.fetch("STUDENT_USERS_SET_ID")}/members?limit=100&offset=0", status: 500)
     expect(@logger).to receive(:error)
-    expect(subject).to eq(1)
+    expect { subject }.to raise_error(StandardError)
   end
 end

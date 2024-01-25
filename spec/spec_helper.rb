@@ -8,7 +8,6 @@ require "httpx/adapters/webmock"
 SimpleCov.start
 
 require File.expand_path "../../lib/aim.rb", __FILE__
-puts File.expand_path "../../lib/aim.rb", __FILE__
 
 RSpec.configure do |config|
   include AlmaRestClient::Test::Helpers
