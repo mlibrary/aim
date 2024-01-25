@@ -10,7 +10,7 @@ module AIM
         users_response = @client.get_all(url: "/conf/sets/#{ENV.fetch("STUDENT_USERS_SET_ID")}/members", record_key: "member")
         if users_response.status != 200
           @logger.error("Unable to retrieve student users set")
-          exit
+          raise StandardError, "Unable to retrieve student users set"
         end
         error_count = 0
         @logger.info("Started Expiring Student Worker Account Passwords")
