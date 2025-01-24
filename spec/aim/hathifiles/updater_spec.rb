@@ -39,3 +39,18 @@ RSpec.describe AIM::Hathifiles::Updater do
     expect(Pathname.new(subject.scratch_dir)).not_to exist
   end
 end
+
+RSpec.describe AIM::Hathifiles do
+  context ".update_for_files" do
+    it "calls Updater with filenames in chronological order" do
+      updater_stub = class_double(AIM::Hathifiles::Updater, new: double(run: nil))
+      newest = "hathi_upd_20241103.txt.gz"
+      middle = "hathi_upd_20241102.txt.gz"
+      oldest = "hathi_upd_20241101.txt.gz"
+      expect(updater_stub).to receive(:new).with({file_name: oldest}).ordered
+      expect(updater_stub).to receive(:new).with({file_name: middle}).ordered
+      expect(updater_stub).to receive(:new).with({file_name: newest}).ordered
+      described_class.update_for_files([newest, oldest, middle], updater_stub)
+    end
+  end
+end

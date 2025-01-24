@@ -26,6 +26,16 @@ module AIM
         Updater.new(date: date).run
       end
 
+      def update_for_files(files, updater = Updater)
+        files.sort.each do |file_name|
+          updater.new(file_name: file_name).run
+        end
+      end
+
+      def update_for_file(file_name)
+        Updater.new(file_name: file_name).run
+      end
+
       def setup
         HathifilesDatabase.new(S.ht_mysql_connection)
           .recreate_tables!
