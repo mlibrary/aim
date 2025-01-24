@@ -2,12 +2,28 @@ RSpec.describe AIM::Hathifiles::Updater do
   before(:each) do
     @logger = instance_double(Logger, info: nil, error: nil)
     @connection = instance_double(HathifilesDatabase::DB::Connection, update_from_file: nil, rawdb: nil)
+    @params = {
+      date: "2023-05-02",
+      logger: @logger,
+      connection: @connection
+    }
   end
   subject do
-    described_class.new(date: "2023-05-02", logger: @logger, connection: @connection)
+    described_class.new(**@params)
   end
-  it "has daily hathifile name" do
-    expect(subject.hathifile).to eq("hathi_upd_20230502.txt.gz")
+  context "#hathifile" do
+    it "when date is given returns file_name" do
+      expect(subject.hathifile).to eq("hathi_upd_20230502.txt.gz")
+    end
+    it "when filename is given returns the filename" do
+      @params[:file_name] = "hathi_upd_20250105.txt.gz"
+      expect(subject.hathifile).to eq("hathi_upd_20250105.txt.gz")
+    end
+    it "when filename and no date, returns filename" do
+      @params[:file_name] = "hathi_upd_20250105.txt.gz"
+      @params.delete(:date)
+      expect(subject.hathifile).to eq("hathi_upd_20250105.txt.gz")
+    end
   end
   it "runs update_from_file command" do
     stub_request(:get, "#{S.ht_host}/files/hathifiles/hathi_upd_20230502.txt.gz")

@@ -2,7 +2,7 @@ module AIM
   module Hathifiles
     class Full < Modifier
       def hathifile
-        "hathi_full_#{@date_str}.txt.gz"
+        @hathifile || "hathi_full_#{@date_str}.txt.gz"
       end
 
       def command

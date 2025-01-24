@@ -2,12 +2,12 @@ module AIM
   module Hathifiles
     class Modifier
       attr_reader :scratch_dir
-      def initialize(date:,
+      def initialize(date: nil, file_name: nil,
         scratch_dir: "#{S.project_root}/scratch/#{SecureRandom.alphanumeric(8)}",
         logger: S.logger,
         connection: HathifilesDatabase.new(S.ht_mysql_connection))
-
-        @date_str = Date.parse(date).strftime("%Y%m%d")
+        @hathifile = file_name
+        @date_str = Date.parse(date).strftime("%Y%m%d") unless date.nil?
         @scratch_dir = scratch_dir
         @hathifile_url = "#{S.ht_host}/files/hathifiles/#{hathifile}"
         @logger = logger
