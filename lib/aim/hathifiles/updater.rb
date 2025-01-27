@@ -2,7 +2,7 @@ module AIM
   module Hathifiles
     class Updater < Modifier
       def hathifile
-        "hathi_upd_#{@date_str}.txt.gz"
+        @hathifile || "hathi_upd_#{@date_str}.txt.gz"
       end
 
       def command

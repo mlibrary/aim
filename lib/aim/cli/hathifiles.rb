@@ -13,6 +13,19 @@ module AIM
         AIM::Hathifiles.full(options[:date])
       end
 
+      desc "update_for_files FILE_NAMES", "updates the hathifiles db for the given filenames. Filenames should be of the form 'hathi_upd_YYYYMMDD.txt.gz'"
+      def update_for_files(*file_names)
+        start_time = Time.now.to_i
+        AIM::Hathifiles.configure_update_metrics
+        AIM::Hathifiles.update_for_files(file_names)
+        AIM::Hathifiles.send_metrics(start_time)
+      end
+
+      desc "update_for_file FILE_NAME", "updates the hathifiles db for the given filename. Filename should be of the form 'hathi_upd_YYYYMMDD.txt.gz'"
+      def update_for_file(file_name)
+        AIM::Hathifiles.update_for_file(file_name)
+      end
+
       desc "update", "updates the hathifiles db for given date; default date is today"
       option :date, type: :string, default: S.today_str
       def update
