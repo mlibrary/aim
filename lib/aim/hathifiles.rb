@@ -5,8 +5,6 @@ require "securerandom"
 require "faraday"
 
 require "aim/hathifiles/modifier"
-require "aim/hathifiles/updater"
-require "aim/hathifiles/full"
 
 module AIM
   module Hathifiles
@@ -16,6 +14,16 @@ module AIM
         start_date.upto(Date.today) do |date|
           Updater.new(date: date.to_s).run
         end
+      end
+
+      def connection
+        HathifilesDatabase.new(
+          logger: S.logger
+        )
+      end
+
+      def sequel_connection
+        connection.rawdb
       end
 
       def full(date)
@@ -37,7 +45,7 @@ module AIM
       end
 
       def setup
-        HathifilesDatabase.new(S.ht_mysql_connection)
+        Hathifiles.connection
           .recreate_tables!
       end
 

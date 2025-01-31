@@ -7,7 +7,8 @@ ARG GID=1000
 LABEL maintainer="mrio@umich.edu"
 
 RUN apt-get update -yqq && apt-get install -yqq --no-install-recommends \
-  vim-tiny
+  vim-tiny \
+  default-mysql-client
 
 RUN gem install bundler
 

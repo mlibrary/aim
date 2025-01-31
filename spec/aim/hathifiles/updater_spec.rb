@@ -1,3 +1,11 @@
+require "ostruct"
+
+class FakeDeltaUpdate
+  def self.new(connection:, hathifile:, output_directory:)
+    OpenStruct.new(run: nil)
+  end
+end
+
 RSpec.describe AIM::Hathifiles::Updater do
   before(:each) do
     @logger = instance_double(Logger, info: nil, error: nil)
@@ -5,7 +13,8 @@ RSpec.describe AIM::Hathifiles::Updater do
     @params = {
       date: "2023-05-02",
       logger: @logger,
-      connection: @connection
+      connection: @connection,
+      delta_update_class: FakeDeltaUpdate
     }
   end
   subject do
@@ -25,16 +34,9 @@ RSpec.describe AIM::Hathifiles::Updater do
       expect(subject.hathifile).to eq("hathi_upd_20250105.txt.gz")
     end
   end
-  it "runs update_from_file command" do
-    stub_request(:get, "#{S.ht_host}/files/hathifiles/hathi_upd_20230502.txt.gz")
-      .to_return(status: 200, body: File.new("./spec/fixtures/hathifiles/hathi_update.txt.gz"))
-    expect(@connection).to receive(:update_from_file)
-    subject.run
-  end
   it "empties the scratch directory even if there's an error" do
     stub_request(:get, "#{S.ht_host}/files/hathifiles/hathi_upd_20230502.txt.gz")
       .to_timeout
-    expect(@connection).not_to receive(:update_from_file)
     expect { subject.run }.to raise_error(Faraday::ConnectionFailed)
     expect(Pathname.new(subject.scratch_dir)).not_to exist
   end

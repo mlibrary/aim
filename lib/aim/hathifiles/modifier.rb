@@ -5,13 +5,15 @@ module AIM
       def initialize(date: nil, file_name: nil,
         scratch_dir: "#{S.project_root}/scratch/#{SecureRandom.alphanumeric(8)}",
         logger: S.logger,
-        connection: HathifilesDatabase.new(S.ht_mysql_connection))
+        connection: Hathifiles.connection,
+        delta_update_class: HathifilesDatabase::DeltaUpdate)
         @hathifile = file_name
         @date_str = Date.parse(date).strftime("%Y%m%d") unless date.nil?
         @scratch_dir = scratch_dir
         @hathifile_url = "#{S.ht_host}/files/hathifiles/#{hathifile}"
         @logger = logger
         @connection = connection
+        @delta_update_klass = delta_update_class
       end
 
       def run
@@ -38,11 +40,36 @@ module AIM
       end
 
       def command
+        @delta_update_klass.new(
+          connection: @connection,
+          hathifile: "#{@scratch_dir}/#{hathifile}",
+          output_directory: @scratch_dir
+        ).run
       end
 
       def clean
         @logger.info("removing scratch directory")
         FileUtils.remove_dir(@scratch_dir)
+      end
+    end
+  end
+end
+
+module AIM
+  module Hathifiles
+    class Updater < Modifier
+      def hathifile
+        @hathifile || "hathi_upd_#{@date_str}.txt.gz"
+      end
+    end
+  end
+end
+
+module AIM
+  module Hathifiles
+    class Full < Modifier
+      def hathifile
+        @hathifile || "hathi_full_#{@date_str}.txt.gz"
       end
     end
   end
