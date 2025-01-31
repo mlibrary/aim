@@ -3,7 +3,7 @@ module AIM
     class Modifier
       attr_reader :scratch_dir
       def initialize(date: nil, file_name: nil,
-        scratch_dir: "#{S.project_root}/scratch/#{SecureRandom.alphanumeric(8)}",
+        scratch_dir: File.join(S.scratch_dir, SecureRandom.alphanumeric(8)),
         logger: S.logger,
         connection: Hathifiles.connection,
         delta_update_class: HathifilesDatabase::DeltaUpdate)
