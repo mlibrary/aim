@@ -81,6 +81,7 @@ GEM
     library_stdnums (1.6.0)
     lint_roller (1.1.0)
     method_source (1.0.0)
+    milemarker (1.0.0)
     minitest (5.20.0)
     mutex_m (0.2.0)
     mysql2 (0.5.6)
@@ -214,6 +215,7 @@ DEPENDENCIES
   canister
   climate_control
   hathifiles_database!
+  milemarker (~> 1.0)
   pry
   pry-byebug
   rspec

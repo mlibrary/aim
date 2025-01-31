@@ -16,6 +16,7 @@ gem "yabeda"
 gem "yabeda-prometheus"
 gem "canister"
 gem "semantic_logger"
+gem "milemarker", "~> 1.0"
 
 group :development, :test do
   gem "standard"

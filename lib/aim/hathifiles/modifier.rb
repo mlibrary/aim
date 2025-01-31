@@ -14,6 +14,7 @@ module AIM
         @logger = logger
         @connection = connection
         @delta_update_klass = delta_update_class
+        @milemarker = Milemarker.new(name: "loading hathifiles rows", batch_size: 10_000)
       end
 
       def run
@@ -44,7 +45,14 @@ module AIM
           connection: @connection,
           hathifile: "#{@scratch_dir}/#{hathifile}",
           output_directory: @scratch_dir
-        ).run
+        ).run do |records_inserted|
+          @milemarker.increment records_inserted
+          @milemarker.on_batch do
+            S.logger.info "load_hathifiles_rows", total: @milemarker.count, batch_size: @milemarker.last_batch_size,
+              batch_load_seconds: @milemarker.last_batch_seconds,
+              batch_load_rate: @milemarker.batch_rate, overall_load_rate: @milemarker.total_rate
+          end
+        end
       end
 
       def clean

@@ -3,6 +3,7 @@ require "date"
 require "fileutils"
 require "securerandom"
 require "faraday"
+require "milemarker"
 
 require "aim/hathifiles/modifier"
 
