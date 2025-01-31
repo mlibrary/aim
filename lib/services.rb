@@ -20,18 +20,45 @@ end
 
 # Hathifiles
 S.register(:ht_host) { ENV["HT_HOST"] || "https://www.hathitrust.org" }
-# S.register(:hf_db_username) { ENV["HATHIFILES_DB_USERNAME"] || "user" }
-# S.register(:hf_db_password) { ENV["HATHIFILES_DB_PASSWORD"] || "password" }
-# S.register(:hf_db_host) { ENV["HATHIFILES_DB_HOST"] || "hathifiles" }
-# S.register(:hf_db_database) { ENV["HATHIFILES_DB_DATABASE"] || "hathifiles" }
 
 S.register(:log_stream) do
   $stdout.sync = true
   $stdout
 end
 
+S.register(:log_level) do
+  ENV["DEBUG"] ? :debug : :info
+end
+
 S.register(:logger) do
   SemanticLogger["aim #{S.app_name}"]
 end
 
-SemanticLogger.add_appender(io: S.log_stream, level: :info) unless ENV["APP_ENV"] == "test"
+class ProductionFormatter < SemanticLogger::Formatters::Json
+  # Leave out the pid
+  def pid
+  end
+
+  # Leave out the timestamp
+  def time
+  end
+
+  # Leave out environment
+  def environment
+  end
+
+  # Leave out application (This would be Semantic Logger, which isn't helpful)
+  def application
+  end
+end
+
+S.register(:app_env) do
+  ENV["APP_ENV"] || "development"
+end
+
+case S.app_env
+when "production"
+  SemanticLogger.add_appender(io: S.log_stream, level: S.log_level, formatter: ProductionFormatter.new)
+when "development"
+  SemanticLogger.add_appender(io: S.log_stream, level: S.log_level, formatter: :color)
+end
