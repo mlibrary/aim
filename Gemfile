@@ -7,7 +7,7 @@ end
 
 gem "hathifiles_database",
   git: "https://github.com/hathitrust/hathifiles_database",
-  branch: "main"
+  tag: "0.5.0"
 
 gem "thor"
 gem "twilio-ruby"
