@@ -7,7 +7,7 @@ end
 
 gem "hathifiles_database",
   git: "https://github.com/hathitrust/hathifiles_database",
-  branch: "main"
+  tag: "0.5.0"
 
 gem "thor"
 gem "twilio-ruby"
@@ -16,6 +16,7 @@ gem "yabeda"
 gem "yabeda-prometheus"
 gem "canister"
 gem "semantic_logger"
+gem "milemarker", "~> 1.0"
 
 group :development, :test do
   gem "standard"
