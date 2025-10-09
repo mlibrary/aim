@@ -11,10 +11,10 @@ jobs:
         run: cat env.example env.development > .env
       - name: Load .env file
         uses: xom9ikk/dotenv@v2
-      - name: Set up Ruby 3.3
+      - name: Set up Ruby 3.4
         uses: ruby/setup-ruby@v1
         with:
-          ruby-version: 3.3
+          ruby-version: 3.4
           bundler-cache: true
         env: 
           BUNDLE_RUBYGEMS__PKG__GITHUB__COM: ${{secrets.GITHUB_TOKEN}}

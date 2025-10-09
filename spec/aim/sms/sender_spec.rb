@@ -11,7 +11,7 @@ describe AIM::SMS::Processor do
   end
   it "skips files that don't start with Ful" do
     allow(@sftp).to receive(:ls).and_return(["sms/some_wrong_file"])
-    expect(@logger_double).to receive(:info).with("Finished Processing SMS Messages\n{:total_files=>0, :num_files_sent=>0, :num_files_not_sent=>0, :num_files_error=>0}")
+    expect(@logger_double).to receive(:info).with("Finished Processing SMS Messages\n{total_files: 0, num_files_sent: 0, num_files_not_sent: 0, num_files_error: 0}")
     subject
   end
   it "processes files that do start with Ful" do
