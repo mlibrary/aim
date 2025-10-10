@@ -14,6 +14,25 @@ GIT
       sqlite3
       tty-prompt
 
+GIT
+  remote: https://github.com/mlibrary/alma_rest_client
+  revision: f94276a6e83d1526f7ec91c66aad1cee8b80f97d
+  tag: alma_rest_client/v2.2.0
+  specs:
+    alma_rest_client (2.2.0)
+      activesupport (~> 8.0)
+      faraday
+      faraday-retry
+      httpx
+      rexml
+
+GIT
+  remote: https://github.com/mlibrary/sftp
+  revision: 7d9ae3ca8628699c8e5304319184835a0a843dd2
+  tag: sftp/v0.4.2
+  specs:
+    sftp (0.4.2)
+
 GEM
   remote: https://rubygems.org/
   specs:
@@ -212,22 +231,11 @@ GEM
       yabeda (~> 0.10)
     zeitwerk (2.7.3)
 
-GEM
-  remote: https://rubygems.pkg.github.com/mlibrary/
-  specs:
-    alma_rest_client (2.2.0)
-      activesupport (~> 8.0)
-      faraday
-      faraday-retry
-      httpx
-      rexml
-    sftp (0.4.2)
-
 PLATFORMS
   x86_64-linux
 
 DEPENDENCIES
-  alma_rest_client (~> 2.0)!
+  alma_rest_client!
   canister
   climate_control
   hathifiles_database!

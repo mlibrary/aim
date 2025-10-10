@@ -16,8 +16,6 @@ jobs:
         with:
           ruby-version: 3.4
           bundler-cache: true
-        env: 
-          BUNDLE_RUBYGEMS__PKG__GITHUB__COM: ${{secrets.GITHUB_TOKEN}}
       - name: Run linter for Ruby
         run: bundle exec standardrb
       - name: Run tests
