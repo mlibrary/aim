@@ -1,9 +1,12 @@
 source "https://rubygems.org"
 
-source "https://rubygems.pkg.github.com/mlibrary" do
-  gem "alma_rest_client", "~> 2.0"
-  gem "sftp"
-end
+gem "alma_rest_client",
+  git: "https://github.com/mlibrary/alma_rest_client",
+  tag: "alma_rest_client/v2.2.0"
+
+gem "sftp",
+  git: "https://github.com/mlibrary/sftp",
+  tag: "sftp/v0.4.2"
 
 gem "hathifiles_database",
   git: "https://github.com/hathitrust/hathifiles_database",
