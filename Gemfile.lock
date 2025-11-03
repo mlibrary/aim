@@ -1,9 +1,9 @@
 GIT
   remote: https://github.com/hathitrust/hathifiles_database
-  revision: 0939c84c8af95757fc00ea9be16f7247709643ee
-  tag: 0.5.0
+  revision: 87129ce7404938e7956f7e2a113425e7676b6a99
+  tag: 0.5.3
   specs:
-    hathifiles_database (0.5.0)
+    hathifiles_database (0.5.3)
       date_named_file
       dotenv
       ettin
@@ -63,7 +63,7 @@ GEM
     coderay (1.1.3)
     concurrent-ruby (1.3.5)
     connection_pool (2.5.4)
-    crack (1.0.0)
+    crack (1.0.1)
       bigdecimal
       rexml
     date_named_file (0.1.1)
@@ -99,7 +99,7 @@ GEM
       http-2 (>= 1.0.0)
     i18n (1.14.7)
       concurrent-ruby (~> 1.0)
-    json (2.15.1)
+    json (2.15.2)
     jwt (3.1.2)
       base64
     language_server-protocol (3.17.0.5)
@@ -107,11 +107,12 @@ GEM
     lint_roller (1.1.0)
     logger (1.7.0)
     method_source (1.1.0)
-    milemarker (1.0.1)
+    milemarker (1.0.2)
+      logger
     minitest (5.26.0)
     mysql2 (0.5.7)
       bigdecimal
-    net-http (0.6.0)
+    net-http (0.7.0)
       uri
     nokogiri (1.18.10-x86_64-linux-gnu)
       racc (~> 1.4)
@@ -134,19 +135,19 @@ GEM
     racc (1.8.1)
     rack (3.2.2)
     rainbow (3.1.1)
-    rake (13.3.0)
+    rake (13.3.1)
     regexp_parser (2.11.3)
     rexml (3.4.4)
-    rspec (3.13.1)
+    rspec (3.13.2)
       rspec-core (~> 3.13.0)
       rspec-expectations (~> 3.13.0)
       rspec-mocks (~> 3.13.0)
-    rspec-core (3.13.5)
+    rspec-core (3.13.6)
       rspec-support (~> 3.13.0)
     rspec-expectations (3.13.5)
       diff-lcs (>= 1.2.0, < 2.0)
       rspec-support (~> 3.13.0)
-    rspec-mocks (3.13.5)
+    rspec-mocks (3.13.7)
       diff-lcs (>= 1.2.0, < 2.0)
       rspec-support (~> 3.13.0)
     rspec-support (3.13.6)
@@ -206,7 +207,7 @@ GEM
       tty-screen (~> 0.8)
       wisper (~> 2.0)
     tty-screen (0.8.2)
-    twilio-ruby (7.8.3)
+    twilio-ruby (7.8.5)
       faraday (>= 0.9, < 3.0)
       jwt (>= 1.5, < 4.0)
       nokogiri (>= 1.6, < 2.0)
@@ -215,8 +216,8 @@ GEM
     unicode-display_width (3.2.0)
       unicode-emoji (~> 4.1)
     unicode-emoji (4.1.0)
-    uri (1.0.4)
-    webmock (3.25.1)
+    uri (1.1.0)
+    webmock (3.26.1)
       addressable (>= 2.8.0)
       crack (>= 0.3.2)
       hashdiff (>= 0.4.0, < 2.0.0)
