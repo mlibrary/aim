@@ -1,0 +1,42 @@
+name: Continuous integration
+on:
+  push:
+  pull_request:
+permissions:
+  contents: write
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6.0.2
+      - name: Create .env file
+        run: cat env.example env.development > .env
+      - name: Load .env file
+        uses: xom9ikk/dotenv@ac290ca23a42155a0cba1031d23afa46240116a9 # v2.3.0
+      - name: Set up Ruby 4.0
+        uses: ruby/setup-ruby@3ff19f5e2baf30647122352b96108b1fbe250c64 # v1.299.0
+        with:
+          ruby-version: 4.0
+          bundler-cache: true
+      - name: Run linter for Ruby
+        run: bundle exec standardrb
+      - name: Run tests
+        run: bundle exec rspec
+  dependabot:
+    name: 'Dependabot'
+    needs: [test]
+    runs-on: ubuntu-latest
+    if: ${{ github.actor == 'dependabot[bot]' && github.event_name == 'pull_request'}}
+    steps:
+      - name: Fetch Dependabot Metadata
+        id: metadata
+        uses: dependabot/fetch-metadata@ffa630c65fa7e0ecfa0625b5ceda64399aea1b36 # v3.0.0
+        with:
+          github-token: '${{ secrets.GITHUB_TOKEN }}'
+      - name: Enable auto-merge for Dependabot PRs
+        # Don't do this for the container-updates group
+        if: ${{ steps.dependabot-metadata.outputs.dependency-group != 'container-updates' }}
+        run: gh pr merge --auto --merge "$PR_URL"
+        env:
+          PR_URL: ${{github.event.pull_request.html_url}}
+          GITHUB_TOKEN: ${{secrets.GITHUB_TOKEN}}
