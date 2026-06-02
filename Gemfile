@@ -10,7 +10,7 @@ gem "sftp",
 
 gem "hathifiles_database",
   git: "https://github.com/hathitrust/hathifiles_database",
-  tag: "0.5.6"
+  tag: "0.5.7"
 
 gem "thor"
 gem "twilio-ruby"
