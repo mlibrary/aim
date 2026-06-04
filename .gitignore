@@ -6,6 +6,8 @@ coverage/
 .bundle/
 .cache/
 .solargraph.yml
+vendor/
+
 
 .ssh/*
 !.ssh/.keep
@@ -22,3 +24,4 @@ sftp/sms/processed/*
 
 scratch/*
 !scratch/.keep
+
