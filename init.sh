@@ -8,13 +8,6 @@ else
   cp env.example .env
 fi
 
-if [ -f ".git/hooks/pre-commit" ]; then
-  echo "🪝 .git/hooks/pre-commit exists. Leaving alone"
-else
-  echo " 🪝 .git/hooks/pre-commit does not exist. Copying .github/pre-commit to .git/hooks/"
-  cp .github/pre-commit .git/hooks/pre-commit
-fi
-
 echo "🔑 Set up ssh keys for mock sftp server"
 ./bin/set_up_development_ssh_keys.sh
 
