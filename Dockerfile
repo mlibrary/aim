@@ -1,7 +1,7 @@
 ################################################################################
 # DEVELOPMENT
 ################################################################################
-FROM ruby:4.0 AS development
+FROM ruby:4.0-slim-trixie@sha256:86a2ff44ce474c1c9bd11dfb2fd7fe5408a5bfe8236b9bc6013e2c6ef4c02d39 AS development
 
 ARG UID=1000
 ARG GID=1000
@@ -9,7 +9,12 @@ ARG GID=1000
 LABEL maintainer="mrio@umich.edu"
 
 RUN apt-get update -yqq && apt-get install -yqq --no-install-recommends \
-  vim-tiny \
+  build-essential \
+  git \
+  libyaml-dev \
+  curl \
+  vim \
+  openssh-client \
   default-mysql-client
 
 
