@@ -8,15 +8,13 @@ else
   cp env.example .env
 fi
 
-if [ -f ".git/hooks/pre-commit" ]; then
-  echo "🪝 .git/hooks/pre-commit exists. Leaving alone"
+ssh_key_count=`find ./sftp/ssh -type f  -name ssh_client_rsa_key | wc -l`
+if [ $ssh_key_count == 1 ]; then
+  echo "🔑 development ssh keys exist. Not re-running"
 else
-  echo " 🪝 .git/hooks/pre-commit does not exist. Copying .github/pre-commit to .git/hooks/"
-  cp .github/pre-commit .git/hooks/pre-commit
+  echo "🔑 setting up development ssh keys"
+  ./set_up_development_ssh_keys.sh
 fi
-
-echo "🔑 Set up ssh keys for mock sftp server"
-./bin/set_up_development_ssh_keys.sh
 
 echo "🛠️ Set up sftp/sms directory for sms scripts"
 ./bin/sms/setup.sh
