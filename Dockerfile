@@ -1,7 +1,7 @@
 ################################################################################
 # DEVELOPMENT
 ################################################################################
-FROM ruby:4.0-slim-trixie@sha256:86a2ff44ce474c1c9bd11dfb2fd7fe5408a5bfe8236b9bc6013e2c6ef4c02d39 AS development
+FROM ruby:4.0-slim-trixie@sha256:3d2d07ec3c267107a2a253327c108c1e5b74ea84cfa5ab125f127beb86dccd86 AS development
 
 ARG UID=1000
 ARG GID=1000
