@@ -15,7 +15,8 @@ RUN apt-get update -yqq && apt-get install -yqq --no-install-recommends \
   curl \
   vim \
   openssh-client \
-  default-mysql-client
+  default-mysql-client \
+  libmariadb-dev
 
 
 RUN groupadd -g ${GID} -o app
