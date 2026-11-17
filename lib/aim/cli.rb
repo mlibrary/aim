@@ -6,7 +6,7 @@ module AIM
   end
 end
 
-["hathifiles", "hathi_trust", "student_workers", "sms"].each do |subcommand|
+["hathifiles", "student_workers", "sms"].each do |subcommand|
   if ["test", "AIM", subcommand].include?(S.app_name)
     require "aim/cli/#{subcommand}"
   end
